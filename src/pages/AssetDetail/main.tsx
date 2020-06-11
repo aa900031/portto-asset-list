@@ -2,6 +2,7 @@ import './main.scss';
 import { defineComponent, onMounted } from 'vue';
 import { useRoute } from 'vue-router';
 import { useAssetDetail } from '../../services/asset-detail';
+import { BaseImage } from '../../components/BaseImage/main';
 
 export default defineComponent({
   name: 'AssetDetail',
@@ -19,11 +20,21 @@ export default defineComponent({
 
       return (
         <>
-          <div class="asset-detail__title">{ detail.collectionName }</div>
-          <img class="asset-detail__img" src={detail.imageUrl}></img>
-          <div class="asset_detail__name">{ detail.name }</div>
-          <div class="asset_detail__desc">{ detail.desc }</div>
-          <a href={detail.permaLink} target="_blank" ref="noopener">Link</a>
+          <h1 class="asset-detail__title">{detail.collectionName}</h1>
+
+          <div class="asset-detail__content">
+            <div class="asset-detail__img">
+              <BaseImage src={detail.imageUrl}></BaseImage>
+            </div>
+            <div class="asset-detail__intro">
+              <div class="asset-detail__name">{detail.name}</div>
+              <div class="asset-detail__desc">{detail.desc}</div>
+            </div>
+          </div>
+
+          <div class="asset-detail__footer">
+            <a href={detail.permaLink} target="_blank" ref="noopener">Perma Link</a>
+          </div>
         </>
       )
     }

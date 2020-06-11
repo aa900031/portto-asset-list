@@ -1,0 +1,51 @@
+@import '../../styles/var.scss';
+@import '../../styles/rwd.scss';
+
+.asset-detail {
+
+  .asset-detail__content {
+    display: flex;
+
+    @include rwd('tablet', 'below') {
+      flex-wrap: wrap;
+    }
+
+    .asset-detail__img {
+      flex: 1;
+
+      @include rwd('tablet', 'below') {
+        flex: 0 0 100%;
+      }
+    }
+
+    .asset-detail__intro {
+      flex: 1;
+      margin-left: 20px;
+
+      @include rwd('tablet', 'below') {
+        flex: 0 0 100%;
+        margin-left: 0;
+      }
+
+      .asset-detail__name {
+        margin: 20px 0;
+        font-size: 20px;
+        font-weight: 500;
+      }
+
+      .asset-detail__desc {
+        margin: 15px 0;
+      }
+    }
+  }
+
+  .asset-detail__footer {
+    position: fixed;
+    padding: 20px;
+    text-align: center;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    text-decoration: none;
+  }
+}

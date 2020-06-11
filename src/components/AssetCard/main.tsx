@@ -1,6 +1,7 @@
 import './main.scss';
 import { defineComponent, PropType } from 'vue';
 import { AssetItem } from '../../services/asset-list';
+import { BaseImage } from '../BaseImage/main';
 
 export const AssetCard = defineComponent({
   name: 'AssetCard',
@@ -18,7 +19,7 @@ export const AssetCard = defineComponent({
     return () => (
       <div class="asset-card">
         <div class="asset-card__img">
-          <img src={data.imageUrl} />
+          <BaseImage src={data.imageUrl}></BaseImage>
         </div>
         <div class="asset-card__name">{data.name}</div>
       </div>

@@ -1,17 +1,10 @@
 import './main.scss';
-import { ROUTE_NAME_ASSET_DETAIL_PAGE } from '../AssetDetail/route';
 import { defineComponent } from 'vue';
-import { useRoute, RouterLink, RouteLocationRaw } from 'vue-router';
+import { useRoute, RouterLink } from 'vue-router';
+import { createAssetDetailRoute } from '../AssetDetail/route';
 import { useAssetList } from '../../services/asset-list';
 import { AssetCard } from '../../components/AssetCard/main';
 import { LoadMoreList } from '../../components/LoadMoreList/main';
-
-const _genAssetDetailLinkById = (id: string): RouteLocationRaw => {
-  return {
-    name: ROUTE_NAME_ASSET_DETAIL_PAGE,
-    params: { id }
-  }
-}
 
 export default defineComponent({
   name: 'AssetList',
@@ -29,7 +22,7 @@ export default defineComponent({
           {
             currentData.value.map(item => {
               const key = item.tokenId
-              const to = _genAssetDetailLinkById(item.tokenId)
+              const to = createAssetDetailRoute(item.address, item.tokenId)
 
               return (
                 <RouterLink key={key} to={to}>
@@ -39,7 +32,7 @@ export default defineComponent({
             })
           }
           {
-            isFetching.value && <div>Loading...</div>
+            isFetching.value ? <div>Loading...</div> : null
           }
         </LoadMoreList>
       </div>

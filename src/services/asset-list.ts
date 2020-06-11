@@ -8,6 +8,7 @@ export interface AssetItem {
   name: string
   desc: string
   tokenId: string
+  address: string
 }
 
 export const useAssetList = (id: string, offset: number = 0) => {
@@ -63,6 +64,7 @@ const _tranDataToAssetList = (data: any): AssetItem[] => {
       name: item.name,
       desc: item.description,
       tokenId: item.token_id,
+      address: item.asset_contract.address,
     }
   });
 }

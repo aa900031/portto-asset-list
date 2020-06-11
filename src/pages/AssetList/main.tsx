@@ -11,30 +11,38 @@ export default defineComponent({
 
   setup() {
     const { params } = useRoute()
-    const { isFetching, currentData, fetchNext } = useAssetList(params.id as string)
+    const address: string = params.address as string;
+    const { isFetching, currentData, fetchNext } = useAssetList(address)
     const handleLoadMore = () => {
       fetchNext()
     }
 
     return () => (
-      <div class="asset-list-page">
-        <LoadMoreList onLoadMore={handleLoadMore}>
-          {
-            currentData.value.map(item => {
-              const key = item.tokenId
-              const to = createAssetDetailRoute(item.address, item.tokenId)
+      <div class="asset-list">
+        <h1 class="asset-list__title"><code>{ address }</code>的資產列表</h1>
+        <div class="asset-list__list">
+          <LoadMoreList onLoadMore={handleLoadMore}>
+            {
+              currentData.value.map(item => {
+                const key = item.tokenId
+                const to = createAssetDetailRoute(item.address, item.tokenId)
 
-              return (
-                <RouterLink key={key} to={to}>
-                  <AssetCard data={item}></AssetCard>
-                </RouterLink>
-              )
-            })
-          }
-          {
-            isFetching.value ? <div>Loading...</div> : null
-          }
-        </LoadMoreList>
+                return (
+                  <RouterLink
+                    class="asset-list__item"
+                    key={key}
+                    to={to}
+                  >
+                    <AssetCard data={item}></AssetCard>
+                  </RouterLink>
+                )
+              })
+            }
+            {
+              isFetching.value ? <div style="width: 100%;">載入中...</div> : null
+            }
+          </LoadMoreList>
+        </div>
       </div>
     )
   }

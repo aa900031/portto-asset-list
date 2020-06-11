@@ -1,0 +1,32 @@
+@import '../../styles/var.scss';
+@import '../../styles/rwd.scss';
+
+.asset-list {
+
+  .asset-list__list {
+    $gap-size: 10px;
+
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    margin: -$gap-size;
+
+    .asset-list__item {
+      border: 1px solid #d3d3d3;
+      border-radius: 5px;
+      text-decoration: none;
+      flex: 0 0 auto;
+      margin: $gap-size;
+      overflow: hidden;
+      width: calc((100% / 4) - #{$gap-size} * 2);
+
+      @include rwd('medium', 'below') {
+        width: calc((100% / 3) - #{$gap-size} * 2);
+      }
+
+      @include rwd('tablet', 'below') {
+        width: calc((100% / 2) - #{$gap-size} * 2);
+      }
+    }
+  }
+}

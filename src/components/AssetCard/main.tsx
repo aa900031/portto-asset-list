@@ -17,7 +17,9 @@ export const AssetCard = defineComponent({
 
     return () => (
       <div class="asset-card">
-        <img class="asset-card__img" src={data.imageUrl} />
+        <div class="asset-card__img">
+          <img src={data.imageUrl} />
+        </div>
         <div class="asset-card__name">{data.name}</div>
       </div>
     )

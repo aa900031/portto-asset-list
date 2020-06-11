@@ -1,0 +1,27 @@
+@charset "UTF-8";
+
+$rwd: (
+  mobile: 576px,
+  tablet: 768px,
+  medium: 992px,
+  desktop: 1200px,
+  large: 1920px,
+);
+
+// direction = above | below
+@mixin rwd($device, $direction) {
+  @each $name, $size in $rwd {
+    @if ( $device == $name ) {
+      @if ($direction == 'above') {
+        @media (min-width: $size) {
+          @content;
+        }
+      }
+      @if ($direction == 'below') {
+        @media (max-width: #{$size - 1}) {
+          @content;
+        }
+      }
+    }
+  };
+}

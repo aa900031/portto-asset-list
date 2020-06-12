@@ -1,4 +1,4 @@
-import { RouteRecordRaw } from 'vue-router'
+import { RouteRecordRaw, RouteLocationRaw } from 'vue-router'
 
 export const ROUTE_NAME_ASSET_LIST_PAGE = 'asset-list'
 
@@ -9,3 +9,10 @@ export const routes: RouteRecordRaw[] = [{
   path: ROUTE_PATH_ASSET_LIST_PAGE,
   component: () => import('./main')
 }]
+
+export const createAssetListRoute = (address: string): RouteLocationRaw => {
+  return {
+    name: ROUTE_NAME_ASSET_LIST_PAGE,
+    params: { address }
+  }
+}
